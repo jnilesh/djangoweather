@@ -3,6 +3,54 @@
 
 {% block content %}
 
-<h1>Hello World</h1>
+<br/>
+
+{% if api %}
+
+	{% if api == "Error..." %}
+		There was an error,please try again...
+	{% else %}
+		<div class="jumbotron {{ category_color }}">
+		  <h1 class="display-4">{{ api.0.Category.Name }} !</h1>
+		  <p class="lead">Current {{ api.0.ReportingArea }} Air Quality: {{ api.0.AQI }}</p>
+
+		  <hr class="my-4">
+		  {% if api.0.Category.Name == "Good"%}
+
+		  <p>(0-50) Air Quality is considered satisfactory, and air pollution posses little or no risk</p>
+		  <br>
+
+		  {% elif api.0.Category.Name == "Moderate" %}
+		  <p>(51 - 100) Although general public is not likely to be affected</p>
+
+		  {% elif api.0.Category.Name == "Unhealthy for Sensitive Groups" %}
+		  <p>(151 - 200)</p>
+
+
+		  {% elif api.0.Category.Name == "Unhealthy" %}
+		  <p>(201 - 300)</p>
+
+
+		  {% elif api.0.Category.Name == "Very Unhealthy" %}
+		  <p>(301 - 500)</p>
+
+
+		  {% elif api.0.Category.Name == "Hazardous" %}
+		  <p></p>
+
+
+
+
+		  {% endif %}	
+
+		  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+		</div>
+		{{ api.0 }}<br><br>
+
+		Air Quality: {{ api.0.AQI }}<br>
+		Area: {{ api.0.ReportingArea }}<br>
+		Category: {{ api.0.Category.Name }}<br><br>
+	{% endif %}
+{% endif %}	
 
 {% endblock %}
