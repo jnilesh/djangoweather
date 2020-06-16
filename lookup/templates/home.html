@@ -2,7 +2,9 @@
 
 
 {% block content %}
-
+{% if zipcode %}
+	{{ zipcode }}
+{% endif %}	
 <br/>
 
 {% if api %}
@@ -15,33 +17,8 @@
 		  <p class="lead">Current {{ api.0.ReportingArea }} Air Quality: {{ api.0.AQI }}</p>
 
 		  <hr class="my-4">
-		  {% if api.0.Category.Name == "Good"%}
-
-		  <p>(0-50) Air Quality is considered satisfactory, and air pollution posses little or no risk</p>
-		  <br>
-
-		  {% elif api.0.Category.Name == "Moderate" %}
-		  <p>(51 - 100) Although general public is not likely to be affected</p>
-
-		  {% elif api.0.Category.Name == "Unhealthy for Sensitive Groups" %}
-		  <p>(151 - 200)</p>
-
-
-		  {% elif api.0.Category.Name == "Unhealthy" %}
-		  <p>(201 - 300)</p>
-
-
-		  {% elif api.0.Category.Name == "Very Unhealthy" %}
-		  <p>(301 - 500)</p>
-
-
-		  {% elif api.0.Category.Name == "Hazardous" %}
-		  <p></p>
-
-
-
-
-		  {% endif %}	
+		
+		{{ category_description }}	<br><br> 
 
 		  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
 		</div>
